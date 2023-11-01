@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Opportunity\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Opportunity;
 
 class Destroy extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke(Opportunity $opportunity)
     {
-        //
+        $opportunity->delete();
+
+        return [
+            'message' => __('The opportunity was successfully deleted'),
+            'redirect' => 'opportunity.admin.index',
+        ];
     }
 }

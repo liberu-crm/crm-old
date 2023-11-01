@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Contact\Admin;
 
+use App\Forms\Builders\ContactForm;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class Create extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    
+    public function __invoke(ContactForm $form)
     {
-        //
+        return ['form' => $form->create()];
     }
 }

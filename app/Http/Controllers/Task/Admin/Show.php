@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Task\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Task;
 
 class Show extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke(Task $task)
     {
-        //
+        return ['task' => $task];
     }
 }

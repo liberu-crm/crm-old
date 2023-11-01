@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Task\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Task;
 
 class Destroy extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke(Task $task)
     {
-        //
+        $task->delete();
+
+        return [
+            'message' => __('The task was successfully deleted'),
+            'redirect' => 'task.index',
+        ];
     }
 }

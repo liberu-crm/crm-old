@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Company\Admin;
 
+use App\Models\Company;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\ValidateCompanyRequest;
 
 class Update extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    
+    public function __invoke(ValidateCompanyRequest $request, Company $company)
     {
-        //
+        $company->update($request->validated());
+
+        return ['message' => __('The company was successfully updated')];
     }
 }

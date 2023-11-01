@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Company\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\ValidateCompanyRequest;
+use App\Models\Company;
 
 class Store extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke(ValidateCompanyRequest $request, Company $company)
     {
-        //
+        $company->fill($request->validated())->save();
+
+        return [
+            'message' => __('The company was successfully created'),
+            'redirect' => 'company.admin.edit',
+            'param' => ['company' => $company->company_id]
+        ];
     }
 }

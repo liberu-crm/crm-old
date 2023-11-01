@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Company\Admin;
 
+use App\Forms\Builders\CompanyForm;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class Create extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke(CompanyForm $form)
     {
-        //
+        return ['form' => $form->create()];
     }
 }

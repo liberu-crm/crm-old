@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Company\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Company;
 
 class Destroy extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke(Company $company)
     {
-        //
+        $company->delete();
+
+        return ['message' => __('The company was successfully deleted')];
     }
 }
