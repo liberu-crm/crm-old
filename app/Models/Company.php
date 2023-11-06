@@ -3,17 +3,39 @@
 namespace App\Models;
 
 use App\Traits\CreatedBy;
-use LaravelLiberu\Companies\Models\Company as CoreCompany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Company extends CoreCompany
+class Company extends Model
 {
-    use CreatedBy;
+    use HasFactory;
+
+    protected $primaryKey = 'company_id';
 
     protected $fillable = [
-        'privacy',
         'name',
-        'email',
-        'is_tenant',
-        'status',
+        'address',
+        'city',
+        'state',
+        'zip',
+        'phone_number',
+        'website',
+        'industry',
+        'description',
     ];
+    
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function opportunities()
+    {
+        return $this->hasMany(Opportunity::class);
+    }
 }
